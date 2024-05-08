@@ -260,25 +260,6 @@ weights_save_loc = os.path.join(save_path, weight_save_id)
 model.save_weights(weights_save_loc)
 print(f'weights were saved as {weights_save_loc}')
 
-import cv2
-
-# Load image from computer
-image_path = r'C:\Users\USER\Desktop\1714673469637.png'
-image = cv2.imread(image_path)
-
-# Resize image to match model input size
-image = cv2.resize(image, img_size)  # img_size هو حجم الصورة المتوقع من النموذج
-
-# Preprocess the image
-image = image  # تقليل مقياس اللون إلى نطاق [0، 1] مماثل للصور في مجموعة البيانات
-image = np.expand_dims(image, axis=0) #إضافة بعد إضافي للحصول على الشكل الصحيح (1، الارتفاع، العرض، القنوات)
-
-# Make predictions
-predictions = model.predict(image)
-
-# إظهار النتائج
-predicted_class = np.argmax(predictions)
-print(f'Predicted class: {classes[predicted_class]}')
 
 from tensorflow.keras.models import load_model
 
